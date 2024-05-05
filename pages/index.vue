@@ -12,6 +12,8 @@
         <ImageNav :data="item.data" v-else-if="item.type === 'icons'"></ImageNav>
         <ImageAd :data="item.data" v-else-if="item.type === 'imageAd'"></ImageAd>
         <ListCard :title="item.title" :data="item.data" v-else-if="item.type === 'list'"></ListCard>
+        <ListCard :title="item.title" :type="item.listType" :data="item.data" v-else-if="item.type === 'promotion'">
+        </ListCard>
       </template>
     </template>
   </div>
@@ -35,6 +37,6 @@ const { pending, data, refresh, error } = await useFetch("/index", {
 
 // 服务端时直接报错
 if (process.server && error.value) {
-  throwError(error.value?.data?.data)
+  createError(error.value?.data?.data)
 }
 </script>
