@@ -7,7 +7,9 @@
       错误提示: {{ error?.data?.data }}
     </template>
     <template v-else>
-      {{ data }}
+      <template v-for="(item, index) in data" :key="index">
+        <Banner :data="item.data" v-if="item.type === 'swiper'"></Banner>
+      </template>
     </template>
   </div>
 </template>
