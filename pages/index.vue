@@ -1,19 +1,18 @@
 <template>
   <div>
-    <div>
-      <nuxt-link to="/test">test</nuxt-link>
-    </div>
-    index
-    <n-icon size="40">
-      <Search />
-    </n-icon>
+    {{ data }}
   </div>
 </template>
 <script setup>
-import {
-  NIcon
-} from 'naive-ui'
-import {
-  Search
-} from '@vicons/ionicons5'
+const { data } = await useFetch("/index", {
+  key: "IndexData",
+  baseURL: "http://demonuxtapi.dishait.cn/pc",
+  headers: {
+    appid: "bd9d01ecc75dbbaaefce"
+  },
+  // 响应拦截器
+  transform: (res) => {
+    return res.data
+  }
+})
 </script>
