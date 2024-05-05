@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   css: [
     "~/assets/main.css"
   ],
-  devtools: { enabled: true },
+  // devtools: { enabled: true },
   build: {
     transpile:
       process.env.NODE_ENV === 'production'

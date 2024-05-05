@@ -10,7 +10,7 @@
         </ui-menu-item>
       </ui-menu>
 
-      <n-button circle class="ml-auto">
+      <n-button circle class="ml-auto mr-3">
         <template #icon>
           <n-icon>
             <Search />
