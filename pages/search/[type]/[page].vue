@@ -6,9 +6,19 @@
         @click="handleClick(item.value)">{{
           item.label }}</UiTabItem>
     </UiTab>
+
+    <LoadingGroup :pending="pending" :error="error">
+      <n-grid :x-gap="20" :cols="4">
+        <n-gi v-for="(item, index) in rows" :key="index">
+          <CourseList :item="item"></CourseList>
+        </n-gi>
+      </n-grid>
+    </LoadingGroup>
   </div>
 </template>
 <script setup>
+import { NGrid, NGi } from 'naive-ui'
+
 const route = useRoute()
 const title = ref(route.query.keyword)
 const type = ref(route.params.type)
@@ -35,6 +45,19 @@ const handleClick = (t) => {
     }
   })
 }
+
+const page = ref(parseInt(route.params.page))
+const {
+  data,
+  pending,
+  err,
+  refresh
+} = await useSearchListApi({
+  page: page.value,
+  keyword: encodeURIComponent(title.value),
+  type: type.value
+})
+const rows = computed(() => data.value?.rows ?? [])
 
 definePageMeta({
   middleware: ["search"]
