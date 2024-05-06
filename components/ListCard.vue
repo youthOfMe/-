@@ -30,18 +30,10 @@ const props = defineProps({
 
 const pdata = ref(props.data || [])
 if (props.type === 'group') {
-  const { data } = await useFetch("/group/list?page=1&usable=1&limit=8", {
-    key: "GroupData",
-    baseURL: "http://demonuxtapi.dishait.cn/pc",
-    headers: {
-      appid: "bd9d01ecc75dbbaaefce"
-    },
-    // 响应拦截器
-    transform: (res) => {
-      return res.data
-    },
-    // 是否开启缓存
-    initialCache: false,
+  const { data } = await useGroupDataApi({
+    page: 1,
+    usable: 1,
+    limit: 8
   })
 
   pdata.value = data.value?.rows || []

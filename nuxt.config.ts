@@ -47,4 +47,7 @@ export default defineNuxtConfig({
   modules: [
     'nuxt-windicss',
   ],
+  imports: {
+    dirs: ["apis"]
+  }
 })

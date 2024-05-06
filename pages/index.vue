@@ -24,21 +24,7 @@ useHead({
   title: "牛马编程首页"
 })
 
-const { pending, data, refresh, error } = await useFetch("/index", {
-  key: "IndexData",
-  baseURL: "http://demonuxtapi.dishait.cn/pc",
-  headers: {
-    appid: "bd9d01ecc75dbbaaefce"
-  },
-  // 响应拦截器
-  transform: (res) => {
-    return res.data
-  },
-  // 是否开启缓存
-  initialCache: false,
-  // 懒加载
-  lazy: true
-})
+const { pending, data, refresh, error } = await useIndexDataApi()
 
 // 服务端时直接报错
 if (process.server && error.value) {
