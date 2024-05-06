@@ -10,7 +10,7 @@
         </ui-menu-item>
       </ui-menu>
 
-      <n-button circle class="ml-auto mr-3">
+      <n-button circle class="ml-auto mr-3" @click="openSearch">
         <template #icon>
           <n-icon>
             <Search />
@@ -27,6 +27,7 @@
     </div>
   </div>
   <div class="w-[100%] h-[80px]"></div>
+  <SearchBar ref="SearchBarRef" />
 </template>
 <script setup>
 import {
@@ -127,6 +128,9 @@ const userOptions = [{
   label: "退出",
   key: "logout"
 }]
+
+const SearchBarRef = ref(null)
+const openSearch = () => SearchBarRef.value.open()
 </script>
 <style>
 .navbar {
