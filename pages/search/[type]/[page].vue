@@ -13,11 +13,15 @@
           <CourseList :item="item"></CourseList>
         </n-gi>
       </n-grid>
+      <div class="flex justify-center items-center mt-5 mb-10">
+        <n-pagination size="large" :page="page" :page-size="limit" :item-count="total"
+          :on-update:page="handlePageChange" />
+      </div>
     </LoadingGroup>
   </div>
 </template>
 <script setup>
-import { NGrid, NGi } from 'naive-ui'
+import { NGrid, NGi, NPagination } from 'naive-ui'
 
 const route = useRoute()
 const title = ref(route.query.keyword)
@@ -47,6 +51,8 @@ const handleClick = (t) => {
 }
 
 const page = ref(parseInt(route.params.page))
+const limit = ref(10)
+
 const {
   data,
   pending,
@@ -58,6 +64,19 @@ const {
   type: type.value
 })
 const rows = computed(() => data.value?.rows ?? [])
+const total = computed(() => data.value?.count ?? 0)
+
+const handlePageChange = (p) => {
+  navigateTo({
+    params: {
+      ...route.params,
+      page: p
+    },
+    query: {
+      ...route.query
+    }
+  })
+}
 
 definePageMeta({
   middleware: ["search"]
