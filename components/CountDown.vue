@@ -23,7 +23,7 @@ function useCountDown(end_time) {
   }
 
   // 结束时间戳 - 当前时间戳 毫秒转为秒
-  time.value = (end_time - Date.now()) / 1000
+  timeout.value = (end_time - Date.now()) / 1000
 
   // 如果timeout <= 0, 直接结束
   if (timeout.value <= 0) return emit("end")
@@ -63,3 +63,7 @@ function getDuration(second) {
   return duration;
 }
 </script>
+
+<style scoped>
+.count-down small
+</style>

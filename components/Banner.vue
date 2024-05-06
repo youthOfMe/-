@@ -11,6 +11,7 @@ defineProps({
   data: Array
 })
 
+// 将该函数通过插件的形式抽取到全局
 const open = (item) => {
   if (item.type === 'webview') {
     window.open(item?.url)
