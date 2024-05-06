@@ -19,6 +19,11 @@
   </div>
 </template>
 <script setup>
+
+useHead({
+  title: "牛马编程首页"
+})
+
 const { pending, data, refresh, error } = await useFetch("/index", {
   key: "IndexData",
   baseURL: "http://demonuxtapi.dishait.cn/pc",

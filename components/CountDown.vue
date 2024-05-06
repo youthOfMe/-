@@ -12,7 +12,11 @@ const props = defineProps({
 })
 
 const emit = defineEmits(["start", "end"])
-const data = useCountDown(props.time)
+
+const data = ref('')
+onNuxtReady(() => {
+  data.value = useCountDown(props.time)
+})
 
 function useCountDown(end_time) {
   const timeout = ref(0)
@@ -65,5 +69,11 @@ function getDuration(second) {
 </script>
 
 <style scoped>
-.count-down small
+.count-down small {
+  background-color: #fff;
+  border-radius: 2px;
+  padding: 2px 3px;
+  margin: 0 3px;
+  @apply text-yellow-500;
+}
 </style>

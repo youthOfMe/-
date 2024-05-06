@@ -1,6 +1,26 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 export default defineNuxtConfig({
+  app: {
+    head: {
+      titleTemplate: "%s - 牛马编程",
+      title: '牛马编程',
+      charset: "utf-8",
+      htmlAttrs: {
+        lang: "zh-cn"
+      },
+      meta: [
+        { name: "description", content: "牛马编程描述" },
+        { name: "keywords", content: "牛马编程关键词" }
+      ],
+      script: [
+        // { src: "http://xxx.js" }
+      ],
+      link: [
+        { rel: "stylesheet", href: "http://xxx.css" }
+      ]
+    }
+  },
   css: [
     "~/assets/main.css"
   ],
